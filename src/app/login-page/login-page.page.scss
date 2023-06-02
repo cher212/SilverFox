@@ -1,0 +1,85 @@
+.bannerTitle {
+    color: #D9D9D9;
+    opacity: 90%;
+    font-size: 24px;
+    margin-top: -115px;
+    text-align: center;
+}
+
+.headingg {
+    font-weight: bold;
+    font-size: 32px;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+.content {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    width: 85%;
+    height: fit-content;
+   
+    margin-left: 28px;
+}
+
+.containerr {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+   // height: 70px;
+    flex-direction: column;
+   margin-top: 95px;
+  
+}
+
+.textboxxes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+  .textCard {
+    border-radius: 25px;
+    width: 85%;
+    box-shadow: 4px 4px 4px rgb(158, 156, 156);
+    margin-top: 15px;
+    padding: 3px;
+}
+
+ion-item {
+
+    --border-width: 0;
+    --inner-border-width: 0;
+}
+
+.textCard1 {
+  border-radius: 25px;
+  width: 85%;
+  box-shadow: 4px 4px 4px rgb(158, 156, 156);
+  margin-top: 15px;
+  padding: 3px;
+  margin-bottom: 8px;
+}
+
+.switche {
+    color: #6F6F6F;
+    font-size: 14px;
+    //margin-top: 1px;
+    width: 42%;
+    align-self: flex-end;
+  }
+
+  ion-button {
+    --border-radius: 25px;
+    }
+
+    .sign {
+        color: black;
+        font-size: 14px;
+        margin-top: 50px;
+        width: 42%;
+        text-align: center;
+      }

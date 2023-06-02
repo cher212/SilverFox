@@ -1,0 +1,7 @@
+{
+  "name": "SilverFox",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
