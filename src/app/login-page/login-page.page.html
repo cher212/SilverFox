@@ -11,23 +11,23 @@
         <h1 class="headingg">Login</h1>
       </div>
 
-      <form class="textboxxes">
+      <form class="textboxxes" [formGroup]="formData" (ngSubmit)="onLogin()">
         
         <ion-card class="textCard">
           <ion-item>
-            <ion-input name="Email" placeholder="Email" type="email"  id="user_email" required ></ion-input>
+            <ion-input name="Email" placeholder="Email" type="email"  id="user_email" formControlName="email" required ></ion-input>
           </ion-item>
         </ion-card>
         <ion-card class="textCard1">
           <ion-item lines= 'none'>
-            <ion-input name="Password" type="password" placeholder="Password" id="user_password" required  ></ion-input>
+            <ion-input name="Password" type="password" placeholder="Password" id="user_password" formControlName="password" required  ></ion-input>
           </ion-item>
         </ion-card>
         <p class="switche" [routerLink]="['/forget-password']"><u>Forgot Password? </u></p>
 
-        <ion-button type="submit" [routerLink]="['/tabs']"
+        <ion-button type="submit" 
         style="border-radius: 25px;color: #F5585C; width: 80%; height: 50px; margin-top: 55px;box-shadow: 5px 5px 5px lightgray;" color="primary">
-        <ion-label
+        <ion-label 
           style="color: white;text-transform: none;font-size: 16px;font-family: 'Sen', sans-serif;">
           <b>Login</b>
         </ion-label>

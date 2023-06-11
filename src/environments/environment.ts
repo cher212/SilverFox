@@ -6,15 +6,6 @@ import { getAnalytics } from "firebase/analytics";
 
 export const environment = {
   production: false,
-
-
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
  firebaseConfig : {
   apiKey: "AIzaSyC0eL1AtdgHESjH8QhweLtfYgLZZcONSRs",
   authDomain: "silverfox-c7491.firebaseapp.com",
@@ -26,6 +17,9 @@ export const environment = {
   measurementId: "G-47RHWRMR0P"
 }
 };
+
+
+const app = initializeApp(environment.firebaseConfig);
 
 // // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
