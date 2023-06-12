@@ -3,7 +3,7 @@
 
   <img src="./assets/banner.png"/>
   <ion-title class="bannerTitle">SilverFox</ion-title>
- 
+
     <div class="containerr">
       <div class="content">
         <h1 class="headingg">Create Account</h1>
@@ -13,36 +13,40 @@
 
     <form class="textboxxes">
     <ion-card class="textCard">
-      <ion-item>
+      <ion-item lines="none">
         <ion-input name="Full Name" placeholder="Full Name" type="text"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
-      <ion-item>
+      <ion-item lines="none">
         <ion-input placeholder="NRIC / Passport No." type="text"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
-      <ion-item>
+      <ion-item lines="none">
         <ion-input name="Email" placeholder="Email" type="email"  id="user_email" required></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
-      <ion-item>
+      <ion-item lines="none">
         <ion-input placeholder="Password" type="password"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
-      <ion-item>
+      <ion-item lines="none">
         <ion-input placeholder="Confirm Password" type="password"></ion-input>
       </ion-item>
     </ion-card>
-    
-<ion-button>Create</ion-button>
-</form>
+    </form>
+
+<ion-button class="button">
+  Create  
+  <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+  
+</ion-button>
 
 </ion-content>

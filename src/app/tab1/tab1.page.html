@@ -8,4 +8,40 @@
    </ion-title>
    <p class="mid">Ready to start your day? </p>
 
+
+   <div class="flex-center">
+    <ion-button class="button">
+      <ion-icon slot="start" name="log-in"></ion-icon>
+      Check in
+    </ion-button>
+   </div>
+
+
+  <div class="container">
+    <p>
+    <ion-label class="subtitle">
+      Emergency button <br>
+      <ion-button shape="circle" id="present-alert">
+      <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+    </ion-button>  
+    <ion-alert
+    trigger="present-alert"
+    header="Do you want to alert your social worker?"
+    [buttons]="alertButtons"
+    
+    > </ion-alert> <br>
+    Press to alert <br>
+    social worker
+    </ion-label>
+    
+
+
+    </p>
+    
+
+
+  </div>
+ 
+ 
+
 </ion-content>

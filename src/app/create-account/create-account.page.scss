@@ -4,33 +4,33 @@
     font-size: 24px;
     margin-top: -115px;
     text-align: center;
-    //font-family: Aclonica !important;
+    font-family: "Aclonica";
 }
 
 .headingg {
     font-weight: bold;
     font-size: 32px;
     font-size: 24px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Aclonica', sans-serif;
 }
 .content {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    width: 85%;
+    width: 55%;
     height: fit-content;
    
-    margin-left: 28px;
+    margin-left: 38px;
 }
 
 .containerr {
-    align-items: center;
+    align-items: left;
     display: flex;
     justify-content: center;
    // height: 70px;
     flex-direction: column;
-   margin-top: 95px;
+   margin-top: 65px;
   
 }
 
@@ -45,8 +45,18 @@
     border-radius: 25px;
     width: 85%;
     box-shadow: 4px 4px 4px rgb(158, 156, 156);
-    margin-top: 15px;
+    margin-top: 7px;
     padding: 3px;
+    //color: #D9D9D9;
 }
 
-
+.button {
+    /*display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: fit-content;
+    justify-content: flex-end;*/
+    margin-top: 15px;
+    margin-left: 57%;
+    --border-radius: 15px;
+}

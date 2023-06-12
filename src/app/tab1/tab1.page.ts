@@ -9,4 +9,28 @@ export class Tab1Page {
 
   constructor() {}
 
+  handlerMessage = '';
+  roleMessage = '';
+
+  public alertButtons = [
+    {
+      text: 'NO',
+      role: 'cancel',
+      handler: () => {
+        this.handlerMessage = 'Alert canceled';
+      },
+    },
+    {
+      text: 'YES',
+      role: 'confirm',
+      handler: () => {
+        this.handlerMessage = 'Alert confirmed';
+      },
+    },
+  ];
+
+  
 }
+
+
+

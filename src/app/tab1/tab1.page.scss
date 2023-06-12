@@ -1,9 +1,27 @@
+/*:root {
+	--ion-color-green: #0F9D59;
+	--ion-color-green-rgb: 15,157,89;
+	--ion-color-green-contrast: #ffffff;
+	--ion-color-green-contrast-rgb: 255,255,255;
+	--ion-color-green-shade: #0d8a4e;
+	--ion-color-green-tint: #27a76a;
+}
+
+.ion-color-green {
+	--ion-color-base: var(--ion-color-green);
+	--ion-color-base-rgb: var(--ion-color-green-rgb);
+	--ion-color-contrast: var(--ion-color-green-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-green-contrast-rgb);
+	--ion-color-shade: var(--ion-color-green-shade);
+	--ion-color-tint: var(--ion-color-green-tint);
+}*/
+
 .header {
     font-weight: 600;
     font-size: 32px;
     margin-top: 40px;
     margin-left: 15px;
-    font-family: 'Aclonia';
+    font-family: "Aclonica";
 }
 
 .mid {
@@ -11,4 +29,45 @@
     font-size: 20px;
     color: #908F8F;
     margin-top: 8px;
+}
+
+ion-button {
+    text-transform: none;
+    width: 300px;
+    height: 60px;
+    //--border-radius: 5%;
+}
+
+ion-button[shape=circle] {
+    --border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    --background: #ED2828;
+}
+
+.button {
+    --border-radius: 15px;
+}
+
+.flex-center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    height: 28%;
+    margin-right: 15px;
+}
+
+.subtitle {
+    color: #ED2828 !important;
+    text-shadow: 2px 2px 2px rgb(192, 192, 192);;
+    font-weight: bold;
+    font-size: 12px;
 }
