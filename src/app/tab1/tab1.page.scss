@@ -61,7 +61,6 @@ ion-button[shape=circle] {
     display: flex;
     justify-content: flex-end;
     align-items: end;
-    height: 28%;
     margin-right: 15px;
 }
 
@@ -70,4 +69,11 @@ ion-button[shape=circle] {
     text-shadow: 2px 2px 2px rgb(192, 192, 192);;
     font-weight: bold;
     font-size: 12px;
+}
+
+.emergency {
+    display:flex;
+    justify-content: flex-end;
+    margin-right: 15px;
+    margin-bottom: 5px;
 }
