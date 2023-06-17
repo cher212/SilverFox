@@ -28,9 +28,9 @@
     align-items: left;
     display: flex;
     justify-content: center;
-   // height: 70px;
+
     flex-direction: column;
-   margin-top: 65px;
+    margin-top: 65px;
   
 }
 
@@ -51,12 +51,23 @@
 }
 
 .button {
-    /*display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: fit-content;
-    justify-content: flex-end;*/
+
     margin-top: 15px;
     margin-left: 57%;
     --border-radius: 15px;
+}
+
+.login {
+    color: black;
+    font-size: 14px;
+    //margin-top: 50px;
+    //width: 42%;
+    text-align: center;
+  }
+
+.center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-account',
@@ -6,10 +11,85 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-account.page.scss'],
 })
 export class CreateAccountPage implements OnInit {
+  credentials: FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private loadingController: LoadingController,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastController
+   ){}
+
+   // Easy access for form fields
+   
+   get fullName(){
+    return this.credentials.get('fullName')
+   }
+   
+   get nric() {
+    return this.credentials.get('nric');
+   }
+   get email() {
+    return this.credentials.get('email');
+   }
+
+   get password() {
+    return this.credentials.get('password');
+   }
+
 
   ngOnInit() {
+    this.credentials = this.fb.group({
+      email: ['',[Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      fullName: ['', [Validators.required]],
+      nric: ['', [Validators.required]],
+    });
+  }
+
+  async register() {
+    //const loading = await this.loadingController.create();
+    //await loading.present();
+
+    //const user = await 
+    this.authService.register(this.credentials.value)
+    .then(user => {
+      if (user) {
+        this.router.navigate(['tabs', 'tab1']);
+      } else {
+        console.log('Signup unsuccessful.');
+      }
+    })
+    .catch(async error => {
+      console.log('Signup error:', error);
+      const toast = await this.toastr.create({
+        message: 'Email and/or Password is incorrect',
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+    });
+
+    //await loading.dismiss();
+
+
+    /*if (user) {
+      this.router.navigateByUrl('/tabs/tab1', {replaceUrl: true});
+    } else {
+      this.showAlert('Registration failed','Please try again');
+    }
+    
+    
+  }    
+
+  async showAlert(header, message) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      //buttons: ['0K'],
+    });*/
   }
 
 }

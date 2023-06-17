@@ -11,28 +11,29 @@
     </div>
 
 
-    <form class="textboxxes">
+    <form class="textboxxes" [formGroup]="credentials">
     <ion-card class="textCard">
       <ion-item lines="none">
-        <ion-input name="Full Name" placeholder="Full Name" type="text"></ion-input>
+        <ion-input name="Full Name" placeholder="Full Name" type="text" required formControlName="fullName"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
       <ion-item lines="none">
-        <ion-input placeholder="NRIC / Passport No." type="text"></ion-input>
+        <ion-input placeholder="NRIC / Passport No." type="text" required formControlName="nric"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
       <ion-item lines="none">
-        <ion-input name="Email" placeholder="Email" type="email"  id="user_email" required></ion-input>
+        <ion-input name="Email" placeholder="Email" type="email"  id="user_email" required formControlName="email"></ion-input>
+
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
       <ion-item lines="none">
-        <ion-input placeholder="Password" type="password"></ion-input>
+        <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
       </ion-item>
     </ion-card>
 
@@ -43,10 +44,13 @@
     </ion-card>
     </form>
 
-<ion-button class="button">
+<ion-button class="button" (click)="register()">
   Create  
   <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
   
 </ion-button>
 
+ 
+
+  <p class="center" class="login"  [routerLink]="['/login-page']"><u> Already have an account? <br> Login here </u> </p>
 </ion-content>

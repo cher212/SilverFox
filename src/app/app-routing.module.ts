@@ -13,7 +13,8 @@ const routes: Routes = [
   {
     path: 'forget-password',
     loadChildren: () => import('./forget-password/forget-password.module').then( m => m.ForgetPasswordPageModule)
-  },  {
+  },
+  {
     path: 'create-account',
     loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
   }
