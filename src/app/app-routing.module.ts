@@ -17,7 +17,11 @@ const routes: Routes = [
   {
     path: 'create-account',
     loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
+  },  {
+    path: 'profile-password-edit',
+    loadChildren: () => import('./profile-password-edit/profile-password-edit.module').then( m => m.ProfilePasswordEditPageModule)
   }
+
 
 ];
 @NgModule({
