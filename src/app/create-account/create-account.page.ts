@@ -4,7 +4,6 @@ import { AuthService } from '../services/auth.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { getAuth, updateProfile } from "firebase/auth";
 
 @Component({
   selector: 'app-create-account',
@@ -51,22 +50,12 @@ export class CreateAccountPage implements OnInit {
   }
 
   async register() {
-    this.authService.register(this.credentials.value)
-    .then( response => {
-      console.log(response);
-      if (response.user) {
-        updateProfile(response.user, {
-        displayName: this.credentials.value.fullName,
-        //email: this.credentials.value.email,
-        //nric: this.credentials.value.nric
-      });
-      this.router.navigate(['login-page']);
-      
+    //const loading = await this.loadingController.create();
+    //await loading.present();
 
-    }
-  })
-      
-      /*user => {
+    //const user = await 
+    this.authService.register(this.credentials.value)
+    .then(user => {
       if (user) {
         this.router.navigate(['tabs', 'tab1']);
       } else {
@@ -81,8 +70,7 @@ export class CreateAccountPage implements OnInit {
         color: 'danger'
       });
       toast.present();
-    }*/
-    
+    });
 
     //await loading.dismiss();
 
