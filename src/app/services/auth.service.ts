@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, User } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-//import {Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+
+export interface UserID {
+  username: string;
+  uid: string;
+  nric: string;
+}
+
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
+  private user: UserID;
 
   auth = getAuth();
 
@@ -21,6 +28,13 @@ export class AuthService {
 	// 		return null;
 	// 	}
 	// }
+  setUser(user: UserID) {
+    return this.user = user;
+  }
+
+  getUserUid() : string {
+    return this.user.uid;
+  }
 
   async register({email, password}) {
     try {

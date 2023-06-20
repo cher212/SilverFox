@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { getAuth, updateProfile } from "firebase/auth";
 
 @Component({
   selector: 'app-create-account',
@@ -28,7 +29,7 @@ export class CreateAccountPage implements OnInit {
     return this.credentials.get('fullName')
    }
    
-   get nric() {
+   public get nric() {
     return this.credentials.get('nric');
    }
    get email() {
@@ -55,9 +56,25 @@ export class CreateAccountPage implements OnInit {
 
     //const user = await 
     this.authService.register(this.credentials.value)
-    .then(user => {
-      if (user) {
-        this.router.navigate(['tabs', 'tab1']);
+    .then(response => {
+      console.log(response);
+      if (response) {
+        updateProfile(response.user, {
+        displayName: this.credentials.value.fullName,
+        //email: this.credentials.value.email,
+        //nric: this.credentials.value.nric
+      });
+      this.router.navigate(['login-page']);
+
+
+    }
+  })
+
+
+
+
+
+        /*this.router.navigate(['login-page']);
       } else {
         console.log('Signup unsuccessful.');
       }

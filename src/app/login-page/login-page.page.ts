@@ -10,6 +10,8 @@ import { NavController, AlertController, LoadingController } from '@ionic/angula
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { CreateAccountPage } from '../create-account/create-account.page';
 
 
 @Component({
@@ -27,7 +29,9 @@ export class LoginPagePage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastController
+    private toastr: ToastController,
+    private firestore: AngularFirestore,
+    private nav: NavController
     ) { }
 
 
@@ -43,12 +47,41 @@ export class LoginPagePage implements OnInit {
     const password = this.formData.value.password;
   
     this.authService.login(email, password)
-      .then(user => {
+    .then(resp => {
+      console.log(resp);
+      this.authService.setUser({
+        username: resp.displayName,
+        uid: resp.uid,
+        nric: resp.nric
+        
+      })
+
+      if (resp.auth ) {
+        const userProfile = this.firestore.collection('profiles').doc(resp.uid);
+        //this.router.navigate(['tabs', 'tab1']);
+        userProfile.get().subscribe( result => {
+          if(result.exists){
+            this.nav.navigateForward(['tabs', 'tab1']);
+          } else {
+            this.firestore.doc(`profiles/${this.authService.getUserUid()}`).set({
+              name: resp.displayName,
+              email: resp.email,
+              nric: "123",
+              role: "elderly"
+            });
+            this.nav.navigateForward(['tabs', 'tab1']);
+          }
+
+        })
+
+      }
+
+      /*.then(user => {
         if (user) {
           this.router.navigate(['tabs', 'tab1']);
         } else {
           console.log('Login unsuccessful.');
-        }
+        }*/
       })
       .catch(async error => {
         console.log('Login error:', error);
