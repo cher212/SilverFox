@@ -45,6 +45,7 @@ export class LoginPagePage implements OnInit {
   onLogin() {
     const email = this.formData.value.email;
     const password = this.formData.value.password;
+    var nric_str = (<HTMLInputElement>document.getElementById("nric_html")).value; 
   
     this.authService.login(email, password)
     .then(resp => {
@@ -52,13 +53,12 @@ export class LoginPagePage implements OnInit {
       this.authService.setUser({
         username: resp.displayName,
         uid: resp.uid,
-        nric: resp.nric
+        nric: nric_str
         
       })
 
       if (resp.auth ) {
         const userProfile = this.firestore.collection('profiles').doc(resp.uid);
-        //this.router.navigate(['tabs', 'tab1']);
         userProfile.get().subscribe( result => {
           if(result.exists){
             this.nav.navigateForward(['tabs', 'tab1']);
@@ -66,7 +66,7 @@ export class LoginPagePage implements OnInit {
             this.firestore.doc(`profiles/${this.authService.getUserUid()}`).set({
               name: resp.displayName,
               email: resp.email,
-              nric: "123",
+              nric: nric_str,
               role: "elderly"
             });
             this.nav.navigateForward(['tabs', 'tab1']);
