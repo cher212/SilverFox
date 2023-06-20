@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
 export interface UserID {
-  username: string;
+  username: string | null;
   uid: string;
   nric: string;
 }

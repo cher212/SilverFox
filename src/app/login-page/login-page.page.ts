@@ -45,10 +45,9 @@ export class LoginPagePage implements OnInit {
   onLogin() {
     const email = this.formData.value.email;
     const password = this.formData.value.password;
-    var nric_str = (<HTMLInputElement>document.getElementById("nric_html")).value; 
   
     this.authService.login(email, password)
-    .then(resp => {
+    /*.then(resp => {
       console.log(resp);
       this.authService.setUser({
         username: resp.displayName,
@@ -74,14 +73,14 @@ export class LoginPagePage implements OnInit {
 
         })
 
-      }
+      }*/
 
-      /*.then(user => {
+      .then(user => {
         if (user) {
           this.router.navigate(['tabs', 'tab1']);
         } else {
           console.log('Login unsuccessful.');
-        }*/
+        }
       })
       .catch(async error => {
         console.log('Login error:', error);

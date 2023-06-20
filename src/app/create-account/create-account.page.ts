@@ -5,6 +5,8 @@ import { NavController, AlertController, LoadingController } from '@ionic/angula
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { getAuth, updateProfile } from "firebase/auth";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Component({
   selector: 'app-create-account',
@@ -20,7 +22,9 @@ export class CreateAccountPage implements OnInit {
     private alertController: AlertController,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastController
+    private toastr: ToastController,
+    private nav: NavController,
+    private firestore: AngularFirestore
    ){}
 
    // Easy access for form fields
@@ -55,23 +59,44 @@ export class CreateAccountPage implements OnInit {
     //await loading.present();
 
     //const user = await 
+    var nric_str = (<HTMLInputElement>document.getElementById("nric_html")).value; 
+
+
     this.authService.register(this.credentials.value)
-    .then(response => {
-      console.log(response);
-      if (response) {
-        updateProfile(response.user, {
-        displayName: this.credentials.value.fullName,
-        //email: this.credentials.value.email,
-        //nric: this.credentials.value.nric
-      });
-      this.router.navigate(['login-page']);
 
+    .then(resp => {
+      console.log(resp);
+      
+      if (resp) {
+        updateProfile(resp.user, {
+          displayName: this.credentials.value.fullName,
+        });
+        this.authService.setUser({
+        username: resp.user.displayName,
+        uid: resp.user.uid,
+        nric: nric_str
+        
+      })
 
-    }
-  })
+        const userProfile = this.firestore.collection('profiles').doc(resp.user.uid);
+        userProfile.get().subscribe( result => {
+          /*if(result.exists){
+            this.nav.navigateForward(['tabs', 'tab1']);
+          } else {*/
+            this.firestore.doc(`profiles/${this.authService.getUserUid()}`).set({
+              name: resp.user.displayName,
+              email: resp.user.email,
+              nric: nric_str,
+              role: "elderly"
+            });
+            this.nav.navigateForward(['tabs', 'tab1']);
+          //}
 
+        })
 
-
+      }
+    })
+  }
 
 
         /*this.router.navigate(['login-page']);
@@ -107,6 +132,6 @@ export class CreateAccountPage implements OnInit {
       message,
       //buttons: ['0K'],
     });*/
-  }
+  
 
-}
+  }
