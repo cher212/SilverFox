@@ -77,6 +77,8 @@ export class LoginPagePage implements OnInit {
 
       .then(user => {
         if (user) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          console.log(user);
           this.router.navigate(['tabs', 'tab1']);
         } else {
           console.log('Login unsuccessful.');
