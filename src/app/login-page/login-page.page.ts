@@ -42,44 +42,55 @@ export class LoginPagePage implements OnInit {
     })
   }
 
+  // onLogin() {
+  //   const email = this.formData.value.email;
+  //   const password = this.formData.value.password;
+  
+  //   this.authService.login(email, password)
+
+  //     .then(user => {
+  //       if (user) {
+  //         localStorage.setItem('currentUser', JSON.stringify(user));
+  //         console.log(user);
+  //         this.router.navigate(['tabs', 'tab1']);
+  //       } else {
+  //         console.log('Login unsuccessful.');
+  //       }
+  //     })
+  //     .catch(async error => {
+  //       console.log('Login error:', error);
+  //       const toast = await this.toastr.create({
+  //         message: 'Email and/or Password is incorrect',
+  //         duration: 2000,
+  //         color: 'danger'
+  //       });
+  //       toast.present();
+  //     });
+  // }
+
   onLogin() {
     const email = this.formData.value.email;
     const password = this.formData.value.password;
   
     this.authService.login(email, password)
-    /*.then(resp => {
-      console.log(resp);
-      this.authService.setUser({
-        username: resp.displayName,
-        uid: resp.uid,
-        nric: nric_str
-        
-      })
-
-      if (resp.auth ) {
-        const userProfile = this.firestore.collection('profiles').doc(resp.uid);
-        userProfile.get().subscribe( result => {
-          if(result.exists){
-            this.nav.navigateForward(['tabs', 'tab1']);
-          } else {
-            this.firestore.doc(`profiles/${this.authService.getUserUid()}`).set({
-              name: resp.displayName,
-              email: resp.email,
-              nric: nric_str,
-              role: "elderly"
-            });
-            this.nav.navigateForward(['tabs', 'tab1']);
-          }
-
-        })
-
-      }*/
-
       .then(user => {
         if (user) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          console.log(user);
-          this.router.navigate(['tabs', 'tab1']);
+          this.firestore.collection('profiles').doc(user.uid).get()
+            .toPromise()
+            .then(snapshot => {
+              if (snapshot && snapshot.exists) {
+                const userDetails = snapshot.data();
+
+                sessionStorage.setItem('currentUser', JSON.stringify(userDetails));
+                console.log(userDetails);
+                this.router.navigate(['tabs', 'tab1']);
+              } else {
+                console.log('User details not found.');
+              }
+            })
+            .catch(error => {
+              console.log('Firestore error:', error);
+            });
         } else {
           console.log('Login unsuccessful.');
         }
@@ -94,8 +105,6 @@ export class LoginPagePage implements OnInit {
         toast.present();
       });
   }
-
-
   gotoSignup() {
     this.navCntrl.navigateForward('create-account');
   }

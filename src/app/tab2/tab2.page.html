@@ -5,27 +5,27 @@
    </ion-title>
    <div class="set1">
    <ion-img src="./assets/profilepic.png" style="width: 91px; height: 105px;" />
-   <p style="margin-top: 40px"> Name </p>
+   <p style="margin-top: 40px">{{ currentUser.name }} </p>
    </div>
    <div class="contain" >
     <ion-card class="textCard1">
       <ion-item lines='none'>
         <ion-icon name="card-outline" style=" color: black;margin-right: 8px;"></ion-icon>
-        <ion-input name="UserID"  value="A185739jd" disabled style="font-size: 20px;"></ion-input>
+        <ion-input name="UserID"  value={{currentUser.nric}} disabled style="font-size: 20px;"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard">
       <ion-item>
         <ion-icon name="mail-outline" style="margin-right: 8px;color: black;"></ion-icon>
-        <ion-input name="Email" type="email" value="test123@gmail.com" style="font-size: 20px;" disabled></ion-input>
+        <ion-input name="Email" type="email" value={{currentUser.email}} style="font-size: 20px;" disabled></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card class="textCard1">
       <ion-item lines='none'>
         <ion-icon name="lock-closed-outline" style="margin-right: 8px;color: black;"></ion-icon>
-        <ion-input name="Password" type="password" value="123456789" style="font-size: 20px;"  disabled></ion-input>
+        <ion-input name="Password" type="password" value="********" style="font-size: 20px;"  disabled></ion-input>
       </ion-item>
 
       <ion-icon name="create-outline" style="color: black;font-size: 23px;margin-right: 8px; " [routerLink]="['/profile-password-edit']">

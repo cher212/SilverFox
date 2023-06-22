@@ -89,7 +89,8 @@ export class CreateAccountPage implements OnInit {
               nric: nric_str,
               role: "elderly"
             });
-            this.nav.navigateForward(['tabs', 'tab1']);
+            sessionStorage.clear();
+            this.nav.navigateForward(['login-page']);
           //}
 
         })

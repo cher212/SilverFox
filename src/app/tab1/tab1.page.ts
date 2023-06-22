@@ -10,9 +10,10 @@ export class Tab1Page implements OnInit {
   currentUser: any;
 
   ngOnInit() {
-    const storedUser = localStorage.getItem('currentUser');
-    this.currentUser = storedUser ? JSON.parse(storedUser) : null;
-    console.log(this.currentUser)
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (currentUser) {
+      this.currentUser = JSON.parse(currentUser);
+    }
   }
 
   constructor() {}
