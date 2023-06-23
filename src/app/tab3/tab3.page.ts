@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import { from } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 
-
+interface InChargeDocument {
+  checkin: string;
+}
 
 @Component({
   selector: 'app-tab3',
@@ -15,7 +17,39 @@ export class Tab3Page implements OnInit {
   currentUser: any;
   isCheckinYes: boolean = false;
 
-  constructor(
+  inChargeCollection: AngularFirestoreCollection<InChargeDocument>;
+  inChargeDocuments: InChargeDocument[] = [];
+
+  constructor(private firestore: AngularFirestore) {
+    const parentDocId = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
+    this.inChargeCollection = this.firestore.collection('profiles').doc(parentDocId).collection<InChargeDocument>('in-charge');
+  }
+
+  ngOnInit() {
+    this.retrieveInChargeDocuments();
+  }
+
+  retrieveInChargeDocuments() {
+    this.inChargeCollection.get().subscribe(querySnapshot => {
+      querySnapshot.forEach(docSnapshot => {
+        const documentData = docSnapshot.data();
+        this.inChargeDocuments.push(documentData);
+        console.log(this.inChargeDocuments);
+      });
+    });
+  }
+
+  getTextBasedOnCheckinValue(checkin: string): string {
+    if (checkin === 'Yes') {
+      return "The 'checkin' value is Yes.";
+    } else {
+      return "The 'checkin' value is No.";
+    }
+  }
+}
+
+
+  /*constructor(
     private firestore: AngularFirestore,
     //private checkedin: boolean
   ) { }
@@ -56,57 +90,7 @@ export class Tab3Page implements OnInit {
           reject(error);
         });
     });
-  }
+  }*/
 
   
-
-
-  /*isCheckedin() {
-    const profilesCollection = this.firestore.collection('profiles');
-    const parentDocId = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
-    const inChargeCollection = profilesCollection.doc(parentDocId).collection('in-charge');
-    const documentId = 'L1TVL6AygVoEtKnOg66w';
-    //var checkedin = this.checkedin;
-
-    from(inChargeCollection.doc(documentId).get().pipe(first()))
-      .toPromise()
-      .then(docSnapshot => {
-        if (docSnapshot && docSnapshot.exists) {
-          const checkinValue = docSnapshot.data()?.['checkin'];
-          if (checkinValue === 'Yes') {
-            console.log("The 'checkin' field value is 'Yes'.");
-            //return true;
-          } else {
-            console.log("The 'checkin' field value is not 'Yes'.");
-            //return false;
-          }
-        } else {
-          console.log('Document does not exist.');
-        }
-      })
-      .catch((error) => {
-        console.log('Error getting document:', error);
-      });
-
-
-    /*
-        if (incharge.doc('L1TVL6AygVoEtKnOg66w').)
-        for (let index = 0; index < array.length; index++) {
-          const element = array[index];
-        }
-    
-        async function getGearData() {
-          const myArray = [];
-          const querySnapshot = await firebase.firestore().collection('gear').get();
-          querySnapshot.forEach(doc => {
-              const check = doc.data().Name;
-              console.log(check);
-              myArray.push(check);
-          });
-          return myArray;
-      }
-    
-    }
-    }*/
-  }
 

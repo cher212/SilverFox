@@ -12,14 +12,22 @@
     </ion-card>
   </div>
 
-  <div class="flex-center">
-
-    <ion-avatar class="item-avatar" *ngIf="isCheckinYes">
+  <!-- <div class="flex-center">
+    <ion-avatar class="item-avatar" *ngFor="let document of inChargeDocuments">
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       <ion-label class="flex-center">elderly</ion-label>
     </ion-avatar>
+  </div>-->
 
+  <div class="flex-center" *ngFor="let document of inChargeDocuments">
+    <ion-avatar class="item-avatar" *ngIf="document.checkedin === 'Yes'">
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
+      <ion-label class="flex-center">{{document.name}}</ion-label>
+    </ion-avatar>
   </div>
+
+  
+  
 
 
   <div class="flex-center">
@@ -30,12 +38,19 @@
     </ion-card>
   </div>
 
-  <div class="flex-center" *ngIf="!isCheckinYes">
+  <!--<div class="flex-center" *ngIf="!isCheckinYes">
     <ion-avatar class="item-avatar">
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       <ion-label class="flex-center">elderly</ion-label>
     </ion-avatar>
-  </div>
+  </div>-->
 
+<div class="flex-center" *ngFor="let document of inChargeDocuments">
+    <ion-avatar class="item-avatar" *ngIf="document.checkedin === 'No'">
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
+      <ion-label class="flex-center">{{document.name}}</ion-label>
+    </ion-avatar>
+    
+</div>
 
 </ion-content>
