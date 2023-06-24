@@ -17,7 +17,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-
+import { SwTabsPageModule } from './sw-tabs/sw-tabs.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
@@ -26,6 +26,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    SwTabsPageModule
  
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }],

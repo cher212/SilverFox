@@ -13,6 +13,12 @@ import { ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { CreateAccountPage } from '../create-account/create-account.page';
 
+interface UserDetails {
+  name: string;
+  email: string;
+  nric: string;
+  role: string;
+}
 
 @Component({
   selector: 'app-login-page',
@@ -79,11 +85,17 @@ export class LoginPagePage implements OnInit {
             .toPromise()
             .then(snapshot => {
               if (snapshot && snapshot.exists) {
-                const userDetails = snapshot.data();
-
+                const userDetails = snapshot.data() as UserDetails;
+  
                 sessionStorage.setItem('currentUser', JSON.stringify(userDetails));
+                sessionStorage.setItem('userID', user.uid);
                 console.log(userDetails);
-                this.router.navigate(['tabs', 'tab1']);
+  
+                if (userDetails.role === 'sw') {
+                  this.router.navigate(['sw-tabs']);
+                } else {
+                  this.router.navigate(['tabs', 'tab1']);
+                }
               } else {
                 console.log('User details not found.');
               }
@@ -105,6 +117,7 @@ export class LoginPagePage implements OnInit {
         toast.present();
       });
   }
+
   gotoSignup() {
     this.navCntrl.navigateForward('create-account');
   }

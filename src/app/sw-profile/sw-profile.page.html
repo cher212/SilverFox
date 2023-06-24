@@ -8,12 +8,6 @@
    <p style="margin-top: 40px">{{ currentUser.name }} </p>
    </div>
    <div class="contain" >
-    <ion-card class="textCard1">
-      <ion-item lines='none'>
-        <ion-icon name="card-outline" style=" color: black;margin-right: 8px;"></ion-icon>
-        <ion-input name="UserID"  value={{currentUser.nric}} disabled style="font-size: 20px;"></ion-input>
-      </ion-item>
-    </ion-card>
 
     <ion-card class="textCard">
       <ion-item>
@@ -32,8 +26,8 @@
       </ion-icon>
     </ion-card>
 
-    <ion-button [routerLink]="['/login-page']" (click)="logout()"
-    style="border-radius: 25px;color: #F5585C; width: 80%; height: 50px; margin-top: 39px;box-shadow: 5px 5px 5px lightgray;"
+    <ion-button [routerLink]="['/login-page']" (click) = 'logout()'
+    style="border-radius: 25px;color: #F5585C; width: 80%; height: 50px; margin-top: 99px;box-shadow: 5px 5px 5px lightgray;"
     color="danger">
     <ion-label style="color: white;text-transform: none;font-size: 16px;font-family: 'Sen', sans-serif;">
       <b>Log out</b>

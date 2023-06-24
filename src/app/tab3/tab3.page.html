@@ -18,12 +18,13 @@
       <ion-label class="flex-center">elderly</ion-label>
     </ion-avatar>
   </div>-->
-
+  <div class="sett">
   <div class="flex-center" *ngFor="let document of inChargeDocuments">
     <ion-avatar class="item-avatar" *ngIf="document.checkedin === 'Yes'">
       <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
       <ion-label class="flex-center">{{document.name}}</ion-label>
     </ion-avatar>
+  </div>
   </div>
 
   

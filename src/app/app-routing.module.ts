@@ -26,7 +26,21 @@ const routes: Routes = [
   {
     path: 'profile-password-edit',
     loadChildren: () => import('./profile-password-edit/profile-password-edit.module').then( m => m.ProfilePasswordEditPageModule)
-  }
+  },
+  {
+    path: 'sw-tabs',
+    loadChildren: () => import('./sw-tabs/sw-tabs.module').then(m => m.SwTabsPageModule)
+  },
+  {
+    path: 'sw-profile',
+    loadChildren: () => import('./sw-profile/sw-profile.module').then( m => m.SwProfilePageModule)
+  },
+  {
+    path: 'sw-tabs',
+    loadChildren: () => import('./sw-tabs/sw-tabs.module').then( m => m.SwTabsPageModule)
+  },
+
+
 
 
 ];

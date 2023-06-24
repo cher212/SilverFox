@@ -87,7 +87,8 @@ export class CreateAccountPage implements OnInit {
               name: resp.user.displayName,
               email: resp.user.email,
               nric: nric_str,
-              role: "elderly"
+              role: "elderly",
+              checkedIn: "false"
             });
             sessionStorage.clear();
             this.nav.navigateForward(['login-page']);

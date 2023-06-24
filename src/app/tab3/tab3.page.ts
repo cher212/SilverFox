@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 
 interface InChargeDocument {
-  checkin: string;
+  checkedIn: string;
 }
 
 @Component({
@@ -39,8 +39,8 @@ export class Tab3Page implements OnInit {
     });
   }
 
-  getTextBasedOnCheckinValue(checkin: string): string {
-    if (checkin === 'Yes') {
+  getTextBasedOnCheckinValue(checkedIn: boolean): string{
+    if (checkedIn === true) {
       return "The 'checkin' value is Yes.";
     } else {
       return "The 'checkin' value is No.";
