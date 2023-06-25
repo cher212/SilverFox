@@ -26,6 +26,10 @@ export class Tab3Page implements OnInit {
   }
 
   ngOnInit() {
+        const currentUser = sessionStorage.getItem('currentUser');
+    if (currentUser) {
+      this.currentUser = JSON.parse(currentUser);
+    }
     this.retrieveInChargeDocuments();
   }
 
