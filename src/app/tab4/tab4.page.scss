@@ -1,0 +1,36 @@
+.header {
+    font-weight: 600;
+    font-size: 27px;
+    margin-top: 40px;
+    margin-left: 15px;
+    font-family: "Aclonica";
+    word-wrap: break-word;
+}
+
+.mid {
+    margin-left: 37px;
+    font-size: 18px;
+    color: #908F8F;
+    margin-top: 8px;
+}
+
+.flex-center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    margin-top: 0%;
+}
+
+
+
+.button {
+    --border-radius: 15px;
+    height: 60px;
+    width: 300px;
+    text-transform: none;
+    font-size: larger;
+ 
+    //color: #BE2813;
+}

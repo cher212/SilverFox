@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { interval } from 'rxjs';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
 
 interface InChargeDocument {
   checkedIn: boolean;
@@ -38,7 +39,10 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  constructor(private firestore: AngularFirestore,) {
+  constructor(
+    private firestore: AngularFirestore,
+    private nav: NavController,
+    ) {
     const parentDocId = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
     this.inChargeCollection = this.firestore.collection('profiles').doc(parentDocId).collection<InChargeDocument>('in-charge');
   }
@@ -59,6 +63,9 @@ export class Tab1Page implements OnInit {
       role: 'confirm',
       handler: () => {
         this.handlerMessage = 'Alert confirmed';
+        console.log('alert confirmed');
+        this.nav.navigateForward(['tab4']);
+
       },
     },
   ];
