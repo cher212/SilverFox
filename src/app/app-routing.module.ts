@@ -38,7 +38,11 @@ const routes: Routes = [
   {
     path: 'sw-tabs',
     loadChildren: () => import('./sw-tabs/sw-tabs.module').then( m => m.SwTabsPageModule)
+  },  {
+    path: 'tab4',
+    loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
   },
+
 
 
 
