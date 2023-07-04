@@ -60,6 +60,7 @@ export class CreateAccountPage implements OnInit {
 
     //const user = await 
     var nric_str = (<HTMLInputElement>document.getElementById("nric_html")).value; 
+    var socialWorkerID = (<HTMLInputElement>document.getElementById("socialWorkerID_html")).value;
 
 
     this.authService.register(this.credentials.value)
@@ -80,16 +81,26 @@ export class CreateAccountPage implements OnInit {
 
         const userProfile = this.firestore.collection('profiles').doc(resp.user.uid);
         userProfile.get().subscribe( result => {
-          /*if(result.exists){
-            this.nav.navigateForward(['tabs', 'tab1']);
-          } else {*/
             this.firestore.doc(`profiles/${this.authService.getUserUid()}`).set({
               name: resp.user.displayName,
               email: resp.user.email,
               nric: nric_str,
+              socialWorkerID : socialWorkerID,
               role: "elderly",
               checkedIn: "false"
-            });
+            })
+            .then(() => {
+              return this.firestore.doc(`profiles/${socialWorkerID}/in-charge/${this.authService.getUserUid()}`).set({
+                name: resp.user.displayName,
+                email: resp.user.email,
+                nric: nric_str,
+                role: "elderly",
+                checkedIn: "false"
+              });
+          })
+            
+            
+            ;
             sessionStorage.clear();
             this.nav.navigateForward(['login-page']);
           //}

@@ -17,6 +17,7 @@ interface UserDetails {
   name: string;
   email: string;
   nric: string;
+  socialWorkerID: string,
   role: string;
 }
 
@@ -89,6 +90,7 @@ export class LoginPagePage implements OnInit {
   
                 sessionStorage.setItem('currentUser', JSON.stringify(userDetails));
                 sessionStorage.setItem('userID', user.uid);
+                sessionStorage.setItem('swID', userDetails.socialWorkerID);
                 console.log(userDetails);
   
                 if (userDetails.role === 'sw') {
