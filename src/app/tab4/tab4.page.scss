@@ -1,14 +1,14 @@
 .header {
     font-weight: 600;
-    font-size: 27px;
+    font-size: 23px;
     margin-top: 40px;
-    margin-left: 15px;
+    margin-left: 5px;
     font-family: "Aclonica";
     word-wrap: break-word;
 }
 
 .mid {
-    margin-left: 37px;
+    margin-left: 25px;
     font-size: 18px;
     color: #908F8F;
     margin-top: 8px;
@@ -25,7 +25,7 @@
 
 
 
-.button {
+/*.button {
     --border-radius: 15px;
     height: 60px;
     width: 300px;
@@ -33,4 +33,20 @@
     font-size: larger;
  
     //color: #BE2813;
+}*/
+
+.button {
+    text-transform: none;
+    margin-top: 15px;
+    margin-left: 67%;
+    --border-radius: 15px;
+}
+
+.card {
+    border-radius:15px;
+    //background-color: #ED2828;
+}
+
+.text {
+    font-size: 23px;
 }
