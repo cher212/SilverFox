@@ -7,6 +7,7 @@ export interface UserID {
   username: string | null;
   uid: string;
   nric: string;
+  socialWorkerID: string;
 }
 
 

@@ -10,7 +10,7 @@
 
 
    <div class="flex-center">
-    <ion-button class="button" (click)="updateCheckInStatus()">
+    <ion-button class="button" [color]="buttonValue > 0 ? 'success' : 'primary'" (click)="updateCheckInStatus()" (click)="buttonValue = 1">
       <ion-icon slot="start" name="log-in"></ion-icon>
       Check in
     </ion-button>

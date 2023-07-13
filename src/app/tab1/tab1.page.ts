@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { interval } from 'rxjs';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
@@ -42,13 +42,15 @@ export class Tab1Page implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private nav: NavController,
-    ) {
+  ) {
     const parentDocId = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
     this.inChargeCollection = this.firestore.collection('profiles').doc(parentDocId).collection<InChargeDocument>('in-charge');
   }
 
   handlerMessage = '';
   roleMessage = '';
+  buttonValue = 0;
+
 
   public alertButtons = [
     {
@@ -69,13 +71,13 @@ export class Tab1Page implements OnInit {
       },
     },
   ];
-  
-  checkIn() {
+
+  /*checkIn() {
     const userID = sessionStorage.getItem('userID');
-  
+
     if (userID) {
       const elderRef = this.firestore.collection('profiles').doc(userID);
-  
+
       // Update the 'checkedIn' field to true
       elderRef.update({ checkedIn: true })
         .then(() => {
@@ -87,7 +89,7 @@ export class Tab1Page implements OnInit {
     } else {
       console.error('User ID is not available in sessionStorage');
     }
-  }
+  }*/
 
   resetButtonValue() {
     const userID = sessionStorage.getItem('userID');
@@ -108,18 +110,24 @@ export class Tab1Page implements OnInit {
     }
   }
 
+
+
   updateCheckInStatus() {
-    const SWuserID = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
+
+    const SWuserID = sessionStorage.getItem('swID');
     const currentUserID = sessionStorage.getItem('userID');
-  
-    if (currentUserID) {
+
+    if (currentUserID && SWuserID) {
       const inChargeDocRef = this.firestore
         .collection('profiles')
         .doc(SWuserID)
         .collection('in-charge')
         .doc(currentUserID);
-  
+
       inChargeDocRef.update({ checkedIn: true })
+        .then(() => {
+           this.firestore.doc(`profiles/${currentUserID}`).update({ checkedIn: true })
+        })
         .then(() => {
           console.log('Check-in status updated successfully');
         })
@@ -132,12 +140,12 @@ export class Tab1Page implements OnInit {
   }
 
 }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 
 
 

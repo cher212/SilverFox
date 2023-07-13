@@ -21,9 +21,11 @@ export class Tab3Page implements OnInit {
   inChargeDocuments: InChargeDocument[] = [];
 
   constructor(private firestore: AngularFirestore) {
-    const parentDocId = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
-    this.inChargeCollection = this.firestore.collection('profiles').doc(parentDocId).collection<InChargeDocument>('in-charge');
-  }
+    // How to get SW's uid ????
+    //const SWuserID = sessionStorage.getItem('userID');
+    //if (SWuserID) {
+    this.inChargeCollection = this.firestore.collection('profiles').doc('userID').collection<InChargeDocument>('in-charge');}
+  //}
 
   ngOnInit() {
         const currentUser = sessionStorage.getItem('currentUser');

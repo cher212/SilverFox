@@ -51,6 +51,7 @@ export class CreateAccountPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       fullName: ['', [Validators.required]],
       nric: ['', [Validators.required]],
+      socialWorkerID: ['',[Validators.required]]
     });
   }
 
@@ -75,7 +76,8 @@ export class CreateAccountPage implements OnInit {
         this.authService.setUser({
         username: resp.user.displayName,
         uid: resp.user.uid,
-        nric: nric_str
+        nric: nric_str,
+        socialWorkerID: socialWorkerID,
         
       })
 
