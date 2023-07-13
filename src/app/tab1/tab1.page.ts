@@ -23,6 +23,7 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     const currentUser = sessionStorage.getItem('currentUser');
+    const swID = sessionStorage.getItem('swID');
     if (currentUser) {
       this.currentUser = JSON.parse(currentUser);
     }
