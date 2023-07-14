@@ -45,19 +45,23 @@ export class CreateAccountPage implements OnInit {
    }
 
 
-  ngOnInit() {
+   ngOnInit() {
     this.credentials = this.fb.group({
-      email: ['',[Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       fullName: ['', [Validators.required]],
       nric: ['', [Validators.required]],
-      socialWorkerID: ['',[Validators.required]]
-    });
+      socialWorkerID: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
+    }, );
   }
+  
 
   async register() {
     //const loading = await this.loadingController.create();
     //await loading.present();
+    const password = this.credentials.value.password;
+    const confirmPassword = this.credentials.value.confirmPassword;
 
     //const user = await 
     var nric_str = (<HTMLInputElement>document.getElementById("nric_html")).value; 
@@ -68,6 +72,11 @@ export class CreateAccountPage implements OnInit {
 
     .then(resp => {
       console.log(resp);
+
+      if (password !== confirmPassword) {
+        this.showToast('Password and confirm password fields do not match');
+        return;
+      }
       
       if (resp) {
         updateProfile(resp.user, {
@@ -107,11 +116,35 @@ export class CreateAccountPage implements OnInit {
             this.nav.navigateForward(['login-page']);
           //}
 
-        })
+        });
 
       }
-    })
+    }).catch(error => {
+      let message = '';
+      
+      if (error.code === 'auth/email-already-in-use') {
+        message = 'Email already exists.';
+      } else if (error.code === 'auth/invalid-email') {
+        message = 'Invalid email address.';
+      } else if (error.code === 'auth/weak-password') {
+        message = 'Weak password. Please choose a stronger password.';
+      } else {
+        message = 'An error occurred. Please try again later.';
+      }
+      
+      this.showToast(message);
+    });
   }
+
+  async showToast(message: string) {
+    const toast = await this.toastr.create({
+      message: message,
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
+  }
+
 
 
         /*this.router.navigate(['login-page']);
