@@ -58,12 +58,10 @@ export class CreateAccountPage implements OnInit {
   
 
   async register() {
-    //const loading = await this.loadingController.create();
-    //await loading.present();
-    const password = this.credentials.value.password;
+
     const confirmPassword = this.credentials.value.confirmPassword;
 
-    //const user = await 
+  
     var nric_str = (<HTMLInputElement>document.getElementById("nric_html")).value; 
     var socialWorkerID = (<HTMLInputElement>document.getElementById("socialWorkerID_html")).value;
 
@@ -73,11 +71,28 @@ export class CreateAccountPage implements OnInit {
     .then(resp => {
       console.log(resp);
 
-      if (password !== confirmPassword) {
+      for (const controlName in this.credentials.controls) {
+        const control = this.credentials.get(controlName);
+        if (control?.value === '') {
+          const fieldName = controlName.charAt(0).toUpperCase() + controlName.slice(1);
+          this.showToast(`${fieldName} is required`);
+          return;
+        }
+      }
+
+      if (!this.email?.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+        this.showToast('Invalid email address');
+        return;
+      }
+      if (this.password?.value.length < 6) {
+        this.showToast('Password should be at least 6 characters long');
+        return;
+      }
+
+      if (this.password?.value !== confirmPassword) {
         this.showToast('Password and confirm password fields do not match');
         return;
       }
-      
       if (resp) {
         updateProfile(resp.user, {
           displayName: this.credentials.value.fullName,
