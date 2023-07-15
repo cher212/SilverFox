@@ -4,64 +4,62 @@
   </ion-title>
   <p class="mid"> Your social worker will be alerted after pressing 'Submit' </p>
 
+
+
+
+  <!--
+  <ion-list>
+    <ion-item class="ion-no-padding" lines="none" *ngFor="let entry of form">
+      <ion-card class="textCard" color="primary" >
+        <ion-card-content>
+          <ion-checkbox color="danger" labelPlacement="end" slot="start" [(ngModel)]="entry.isChecked"> <ion-text class="text"> {{entry.val}} </ion-text>
+          </ion-checkbox>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+-->
+
   <ion-list>
     <ion-card color="primary" class="card">
       <ion-card-content>
-        <ion-checkbox color="danger" labelPlacement="end" slot="start"> <ion-text class="text"> Experienced a fall
-          </ion-text> </ion-checkbox>
-      </ion-card-content>
-    </ion-card>
-
-
-    <ion-card color="primary" class="card">
-      <ion-card-content>
-        <ion-checkbox color="danger" labelPlacement="end" slot="start"> <ion-text class="text"> Urgent medical attention
-          </ion-text> </ion-checkbox>
+        <ion-checkbox color="danger" labelPlacement="end" slot="start" name="fall" [(ngModel)]="fall">
+          <ion-text class="text"> Experienced a fall </ion-text>
+        </ion-checkbox>
       </ion-card-content>
     </ion-card>
 
     <ion-card color="primary" class="card">
       <ion-card-content>
-        <ion-checkbox color="danger" labelPlacement="end" slot="start"> <ion-text class="text"> Feeling unwell
-          </ion-text> </ion-checkbox>
+        <ion-checkbox color="danger" labelPlacement="end" slot="start" name="medical" [(ngModel)]="medical">
+          <ion-text class="text"> Urgent medical attention </ion-text>
+        </ion-checkbox>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="primary" class="card">
+      <ion-card-content>
+        <ion-checkbox color="danger" labelPlacement="end" slot="start" name="unwell" [(ngModel)]="unwell">
+          <ion-text class="text"> Feeling unwell </ion-text>
+        </ion-checkbox>
       </ion-card-content>
     </ion-card>
 
     <ion-card color="primary" class="card">
       <ion-card-content lines="none">
-        <ion-input name="Others" type="text" required>Other comments</ion-input>
+        <ion-input name="Others" type="text" required> 
+          <ion-text class="text"> Other comments </ion-text>
+        </ion-input>
       </ion-card-content>
     </ion-card>
 
   </ion-list>
-  <ion-button class="button" (click)="submit()">
-    Submit  
+
+
+  <ion-button class="button" (click)="updateAlerts(fall, medical, unwell)">
+    Submit
     <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
-    
+
   </ion-button>
-
-
-  <!--
-  <div class="flex-center">
-    <ion-button class="button">
-      <ion-img src="./assets/falling.png"></ion-img>
-      Experienced a fall
-    </ion-button>
-  </div>
-
-  <div class="flex-center">
-    <ion-button class="button">
-      <ion-icon slot="start" name="medkit-outline"></ion-icon>
-      Urgent medical attention
-    </ion-button>
-  </div>
-
-  <div class="flex-center">
-    <ion-button class="button">
-      <ion-img src="./assets/headache.png"></ion-img>
-      Feeling unwell
-    </ion-button>
-  </div>
--->
 
 </ion-content>

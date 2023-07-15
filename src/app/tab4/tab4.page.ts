@@ -9,6 +9,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
+  fall:boolean;
+  unwell:boolean;
+  medical:boolean;
 
   constructor(
     private nav: NavController,
@@ -18,7 +21,19 @@ export class Tab4Page implements OnInit {
   ngOnInit() {
   }
 
-  async submit() {
+  /*public form = [
+    { val: 'Experienced a fall' },
+    { val: 'Urgent Medical Attention'},
+    { val: 'Feeling unwell' }
+  ];
+  
+  triggerEvent(event, value) {
+    this.firestore.collection('profiles').doc('abc').set({
+      value: event.detail.checked
+    })
+  }*/
+
+  async updateAlerts(fall:boolean, medical: boolean, unwell:boolean) {
     const SWuserID = sessionStorage.getItem('swID');
     const currentUserID = sessionStorage.getItem('userID');
 
@@ -31,7 +46,15 @@ export class Tab4Page implements OnInit {
 
       inChargeDocRef.update({ alerted: true })
         .then(() => {
-          this.firestore.doc(`profiles/${currentUserID}`).update({ alerted: true })
+          this.firestore
+        .collection('profiles')
+        .doc(SWuserID)
+        .collection('in-charge')
+        .doc(currentUserID).update({ 
+            fall: fall,
+            medical: medical,
+            unwell: unwell,
+          })
         })
     }
 

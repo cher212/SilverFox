@@ -42,9 +42,18 @@
     --border-radius: 15px;
 }
 
+.item {
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
 .card {
     border-radius:15px;
-    //background-color: #ED2828;
+}
+
+.textCard {
+    border-radius:15px;
+    width: 100%;
 }
 
 .text {
