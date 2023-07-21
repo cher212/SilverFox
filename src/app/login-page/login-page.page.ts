@@ -19,6 +19,7 @@ interface UserDetails {
   nric: string;
   socialWorkerID: string,
   role: string;
+  uid: string;
 }
 
 @Component({

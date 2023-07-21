@@ -9,9 +9,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
-  fall:boolean;
-  unwell:boolean;
-  medical:boolean;
+  fall:boolean = false;
+  unwell:boolean= false;
+  medical:boolean= false;
 
   constructor(
     private nav: NavController,

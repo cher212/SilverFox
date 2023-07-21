@@ -22,10 +22,10 @@ export class Tab3Page implements OnInit {
 
   constructor(private firestore: AngularFirestore) {
     // How to get SW's uid ????
-    //const SWuserID = sessionStorage.getItem('userID');
-    //if (SWuserID) {
-    this.inChargeCollection = this.firestore.collection('profiles').doc('userID').collection<InChargeDocument>('in-charge');}
-  //}
+    const SWuserID = sessionStorage.getItem('userID');
+    if (SWuserID) {
+    this.inChargeCollection = this.firestore.collection('profiles').doc(SWuserID).collection('in-charge');}
+    }
 
   ngOnInit() {
         const currentUser = sessionStorage.getItem('currentUser');

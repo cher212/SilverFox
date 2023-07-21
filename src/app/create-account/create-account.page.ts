@@ -113,7 +113,7 @@ export class CreateAccountPage implements OnInit {
               nric: nric_str,
               socialWorkerID : socialWorkerID,
               role: "elderly",
-              checkedIn: "false"
+              checkedIn: false
             })
             .then(() => {
               return this.firestore.doc(`profiles/${socialWorkerID}/in-charge/${this.authService.getUserUid()}`).set({
@@ -121,7 +121,7 @@ export class CreateAccountPage implements OnInit {
                 email: resp.user.email,
                 nric: nric_str,
                 role: "elderly",
-                checkedIn: "false"
+                checkedIn: false
               });
           })
             
