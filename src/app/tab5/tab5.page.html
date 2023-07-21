@@ -19,7 +19,7 @@
 
           <ion-col style="flex: 1;" style="text-align: left;">
 
-            <ion-card-subtitle class="black-text">Emergency:
+            <ion-card-subtitle class="black-text"> <u>Emergency:</u>
               <b *ngIf="document.fall === true"> <br> Experienced a fall <br> </b>
               <b *ngIf="document.medical === true"> Urgent Medical Attention <br> </b>
               <b *ngIf="document.unwell === true"> Feeling Unwell </b>
@@ -27,9 +27,9 @@
             </ion-card-subtitle>
 
 
-            <ion-text color="dark">Other comments: <b>{{document.comments}} </b> <br></ion-text>
+            <ion-text color="dark"> <u>Other comments:</u> <b> <br> {{document.comments}} </b> <br></ion-text>
 
-            <ion-text color="dark">Time: </ion-text>
+            <ion-text color="dark"><u>Time:</u> </ion-text>
 
           </ion-col>
         </ion-row>

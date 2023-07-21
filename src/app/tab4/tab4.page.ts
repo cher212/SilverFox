@@ -12,6 +12,7 @@ export class Tab4Page implements OnInit {
   fall:boolean = false;
   unwell:boolean= false;
   medical:boolean= false;
+  comments: string;
 
   constructor(
     private nav: NavController,
@@ -33,7 +34,7 @@ export class Tab4Page implements OnInit {
     })
   }*/
 
-  async updateAlerts(fall:boolean, medical: boolean, unwell:boolean) {
+  async updateAlerts(fall:boolean, medical: boolean, unwell:boolean, comments:string) {
     const SWuserID = sessionStorage.getItem('swID');
     const currentUserID = sessionStorage.getItem('userID');
 
@@ -54,6 +55,7 @@ export class Tab4Page implements OnInit {
             fall: fall,
             medical: medical,
             unwell: unwell,
+            comments: comments
           })
         })
     }

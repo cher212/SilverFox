@@ -47,7 +47,7 @@
 
     <ion-card color="primary" class="card">
       <ion-card-content lines="none">
-        <ion-input name="Others" type="text" required> 
+        <ion-input name="Others" type="text" required  [(ngModel)]="comments"> 
           <ion-text class="text"> Other comments </ion-text>
         </ion-input>
       </ion-card-content>
@@ -56,7 +56,7 @@
   </ion-list>
 
 
-  <ion-button class="button" (click)="updateAlerts(fall, medical, unwell)">
+  <ion-button class="button" (click)="updateAlerts(fall, medical, unwell, comments)">
     Submit
     <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
 
