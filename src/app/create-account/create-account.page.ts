@@ -121,7 +121,8 @@ export class CreateAccountPage implements OnInit {
                 email: resp.user.email,
                 nric: nric_str,
                 role: "elderly",
-                checkedIn: false
+                checkedIn: false,
+                uid: resp.user.uid
               });
           })
             

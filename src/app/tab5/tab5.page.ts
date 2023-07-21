@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 interface InChargeDocument {
   checkedIn: string;
@@ -13,11 +15,16 @@ interface InChargeDocument {
 export class Tab5Page implements OnInit {
   currentUser: any;
   isCheckinYes: boolean = false;
+  uid: string;
 
   inChargeCollection: AngularFirestoreCollection<InChargeDocument>;
   inChargeDocuments: InChargeDocument[] = [];
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(
+    private firestore: AngularFirestore,
+    private nav: NavController,
+    private router: Router
+    ) {
     // How to get SW's uid ????
     const SWuserID = sessionStorage.getItem('userID');
     if (SWuserID) {
@@ -49,6 +56,37 @@ export class Tab5Page implements OnInit {
     } else {
       return "The 'checkin' value is No.";
     }
+  }
+
+  dismissAlert(uid) {
+    //const SWuserID = sessionStorage.getItem('swID');
+    const currentUserID = sessionStorage.getItem('userID');
+
+    if (currentUserID && uid) {
+      const inChargeDocRef = this.firestore
+        .collection('profiles')
+        .doc(currentUserID)
+        .collection('in-charge')
+        .doc(uid);
+
+      inChargeDocRef.update({ alerted: false })
+        .then(() => {
+          this.firestore
+        .collection('profiles')
+        .doc(currentUserID)
+        .collection('in-charge')
+        .doc(uid).update({ 
+            fall: false,
+            medical: false,
+            unwell: false,
+            comments: ""
+          })
+        })
+    }
+    this.router.navigate(['sw-tabs', 'alerts']);
+    //this.nav.navigateForward(['sw-tabs','alerts']);
+    console.log('dismissed');
+
   }
 }
 
