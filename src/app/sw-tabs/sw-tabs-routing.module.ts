@@ -23,6 +23,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'alerts',
+        loadChildren: () =>
+          import('../tab5/tab5.module').then((m) => m.Tab5PageModule),
+      },
+      {
         path: '',
         redirectTo: '/sw-tabs/status',
         pathMatch: 'full',
