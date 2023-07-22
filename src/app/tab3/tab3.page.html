@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <ion-title class="header">
-    Welcome, <br>  {{ currentUser.name }}
+    Welcome, <br> {{ currentUser.name }}
   </ion-title>
   <p class="mid">Status Overview </p>
 
@@ -18,17 +18,15 @@
       <ion-label class="flex-center">elderly</ion-label>
     </ion-avatar>
   </div>-->
-  <div class="sett">
-  <div class="flex-center" *ngFor="let document of inChargeDocuments">
-    <ion-avatar class="item-avatar" *ngIf="document.checkedIn === true">
-      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
-      <ion-label class="flex-center">{{document.name}}</ion-label>
-    </ion-avatar>
-  </div>
+  <div class="profile-pictures">
+    <div class="flex-center" class="profile-picture" *ngFor="let document of inChargeDocuments">
+      <ion-avatar class="item-avatar" *ngIf="document.checkedIn === true">
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
+        <ion-label class="text-below-avatar">{{document.name}}</ion-label>
+      </ion-avatar>
+    </div>
   </div>
 
-  
-  
 
 
   <div class="flex-center">
@@ -39,19 +37,14 @@
     </ion-card>
   </div>
 
-  <!--<div class="flex-center" *ngIf="!isCheckinYes">
-    <ion-avatar class="item-avatar">
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      <ion-label class="flex-center">elderly</ion-label>
-    </ion-avatar>
-  </div>-->
 
-<div class="flex-center" *ngFor="let document of inChargeDocuments">
-    <ion-avatar class="item-avatar" *ngIf="document.checkedIn === false">
-      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
-      <ion-label class="flex-center">{{document.name}}</ion-label>
-    </ion-avatar>
-    
-</div>
+  <div class="profile-pictures">
+    <div class="flex-center" class="profile-picture" *ngFor="let document of inChargeDocuments">
+      <ion-avatar class="item-avatar"  *ngIf="document.checkedIn === false">
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Silhouette of a person's head">
+        <ion-label class="text-below-avatar">{{document.name}}</ion-label>
+      </ion-avatar>
+    </div>
+  </div>
 
 </ion-content>

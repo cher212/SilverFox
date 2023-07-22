@@ -1,4 +1,3 @@
-
 .header {
     font-weight: 600;
     font-size: 32px;
@@ -31,11 +30,11 @@
     border-top-right-radius: 10px;
 
     background-color: #0F9D59;
-    width:100px;
+    width: 100px;
     margin-left: 35px;
     height: 25px;
     margin-top: 55px;
-    
+
     overflow: hidden;
 }
 
@@ -57,18 +56,50 @@
     border-top-right-radius: 10px;
 
     background-color: #E64B1A;
-    width:130px;
+    width: 130px;
     margin-left: 35px;
     height: 25px;
     margin-top: 55px;
-    
+
     overflow: hidden;
 }
 
-.item-avatar  {     
-    width:100% !important;  
-    height : 100% !important;  
-    max-width: 50px !important;  //any size
+.item-avatar {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 50px !important; //any size
     max-height: 50px !important; //any size 
     margin-left: 45px;
-    }
+    margin-bottom: 50px;
+}
+
+
+.profile-pictures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+  
+
+.profile-picture {
+    //margin: 5px; /* Add some spacing between the profile pictures */
+    flex-direction: column;
+    /* Stack the avatar and text vertically */
+    align-items: center;
+    /* Center the content horizontally */
+    justify-content: center;
+    /* Center the content vertically */
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 10%;
+    /* Set a fixed width for each profile picture container */
+}
+
+
+.text-below-avatar {
+    text-align: center;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    /* Center the text horizontally within the container */
+}
