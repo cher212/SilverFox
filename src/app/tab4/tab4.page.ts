@@ -34,34 +34,52 @@ export class Tab4Page implements OnInit {
     })
   }*/
 
-  async updateAlerts(fall:boolean, medical: boolean, unwell:boolean, comments:string) {
+  
+
+  async updateAlerts(fall: boolean, medical: boolean, unwell: boolean, comments: string) {
     const SWuserID = sessionStorage.getItem('swID');
     const currentUserID = sessionStorage.getItem('userID');
-
+  
     if (currentUserID && SWuserID) {
       const inChargeDocRef = this.firestore
         .collection('profiles')
         .doc(SWuserID)
         .collection('in-charge')
         .doc(currentUserID);
-
+  
       inChargeDocRef.update({ alerted: true })
         .then(() => {
           this.firestore
-        .collection('profiles')
-        .doc(SWuserID)
-        .collection('in-charge')
-        .doc(currentUserID).update({ 
-            fall: fall,
-            medical: medical,
-            unwell: unwell,
-            comments: comments
-          })
+            .collection('profiles')
+            .doc(SWuserID)
+            .collection('in-charge')
+            .doc(currentUserID).update({
+              fall: fall,
+              medical: medical,
+              unwell: unwell,
+            });
+  
+          if (comments) {
+            inChargeDocRef.update({
+              comments: comments
+            });
+          } else {
+            inChargeDocRef.update({
+              comments: ""
+            });
+          }
         })
+        .then(() => {
+          this.nav.navigateForward(['tabs', 'tab1']);
+          // Navigate forward after a slight delay (e.g., 2 seconds)
+          setTimeout(() => {
+            
+            // Reload the current page
+            window.location.reload();
+          }, 4000); // Change the delay time as needed
+        });
     }
-
-    this.nav.navigateForward(['tabs', 'tab1']);
-
   }
+  
 
 }

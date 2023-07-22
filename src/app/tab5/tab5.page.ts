@@ -81,6 +81,7 @@ export class Tab5Page implements OnInit {
             unwell: false,
             comments: ""
           })
+          window.location.reload();
         })
     }
     this.router.navigate(['sw-tabs', 'alerts']);
