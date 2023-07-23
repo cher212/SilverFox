@@ -28,7 +28,7 @@ export class Tab1Page implements OnInit {
       this.currentUser = JSON.parse(currentUser);
     }
 
-
+    this.resetButtonValue()
     // Calculate the time until the next midnight
     const now = new Date();
     const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
@@ -94,12 +94,25 @@ export class Tab1Page implements OnInit {
 
   resetButtonValue() {
     const userID = sessionStorage.getItem('userID');
+    const SWuserID = sessionStorage.getItem('swID');
 
-    if (userID) {
+    if (userID && SWuserID) {
       const elderRef = this.firestore.collection('profiles').doc(userID);
+      const inChargeDocRef = this.firestore
+      .collection('profiles')
+      .doc(SWuserID)
+      .collection('in-charge')
+      .doc(userID);
 
       // Update the 'checkedIn' field to false
       elderRef.update({ checkedIn: false })
+        .then(() => {
+          console.log('Button value reset to false');
+        })
+        .catch((error) => {
+          console.error('Error updating checkedIn field:', error);
+        });
+        inChargeDocRef.update({ checkedIn: false })
         .then(() => {
           console.log('Button value reset to false');
         })
