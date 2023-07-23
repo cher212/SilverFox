@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
 
 
 @Component({
@@ -33,12 +34,19 @@ export class Tab4Page implements OnInit {
       value: event.detail.checked
     })
   }*/
-
+    formatDate(timestamp: firebase.firestore.Timestamp): string {
+      const date = timestamp.toDate();
+      return date.toLocaleString(); // Adjust the format as per your requirements
+    }
   
 
   async updateAlerts(fall: boolean, medical: boolean, unwell: boolean, comments: string) {
     const SWuserID = sessionStorage.getItem('swID');
     const currentUserID = sessionStorage.getItem('userID');
+    const timestamp = firebase.firestore.Timestamp.fromDate(new Date());
+    const time = this.formatDate(timestamp);
+
+
   
     if (currentUserID && SWuserID) {
       const inChargeDocRef = this.firestore
@@ -49,14 +57,11 @@ export class Tab4Page implements OnInit {
   
       inChargeDocRef.update({ alerted: true })
         .then(() => {
-          this.firestore
-            .collection('profiles')
-            .doc(SWuserID)
-            .collection('in-charge')
-            .doc(currentUserID).update({
+          inChargeDocRef.update({
               fall: fall,
               medical: medical,
               unwell: unwell,
+              time: time
             });
   
           if (comments) {
