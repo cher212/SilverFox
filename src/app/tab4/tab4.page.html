@@ -1,7 +1,13 @@
 <ion-content [fullscreen]="true">
-  <ion-title class="header">
+  <ion-header>
+    <ion-button (click)="goBack()">
+      <ion-icon name="arrow-back" size="normal"></ion-icon>
+    </ion-button>
+    <ion-title class="header">
     Give us more details on <br> your emergency:
   </ion-title>
+  </ion-header>
+  
   <p class="mid"> Your social worker will be alerted after pressing 'Submit' </p>
 
 
@@ -56,7 +62,7 @@
   </ion-list>
 
 
-  <ion-button class="button" (click)="updateAlerts(fall, medical, unwell, comments)">
+  <ion-button class="submit-button" (click)="updateAlerts(fall, medical, unwell, comments)">
     Submit
     <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
 

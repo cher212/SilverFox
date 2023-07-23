@@ -85,6 +85,9 @@ export class Tab4Page implements OnInit {
         });
     }
   }
-  
+
+  goBack() {
+    this.nav.back(); // Use NavController to navigate back
+  }  
 
 }
