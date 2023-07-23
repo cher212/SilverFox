@@ -41,4 +41,8 @@ export class ForgetPasswordPage implements OnInit {
       .then(() => console.log('email sent'))
       .catch((error) => console.log(error));
   }
+
+  goBack() {
+    this.navCtrl.back(); // Use NavController to navigate back
+  }
 }
