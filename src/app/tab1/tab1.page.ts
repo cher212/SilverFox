@@ -28,7 +28,7 @@ export class Tab1Page implements OnInit {
       this.currentUser = JSON.parse(currentUser);
     }
 
-    this.resetButtonValue()
+
     // Calculate the time until the next midnight
     const now = new Date();
     const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
