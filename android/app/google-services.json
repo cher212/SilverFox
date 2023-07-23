@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "205889353966",
+    "firebase_url": "https://silverfox-c7491-default-rtdb.firebaseio.com",
+    "project_id": "silverfox-c7491",
+    "storage_bucket": "silverfox-c7491.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205889353966:android:536465df4ec3e02cc69bff",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8HVnqrSvMfSfY2_Dph3ede03UDLePhYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
