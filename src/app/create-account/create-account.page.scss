@@ -7,6 +7,7 @@
     font-family: "Aclonica";
 }
 
+
 .headingg {
     font-weight: bold;
     font-size: 32px;
@@ -18,20 +19,25 @@
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    width: 55%;
+    width: 85%;
     height: fit-content;
    
-    margin-left: 38px;
+    margin-left: 28px;
 }
 
 .containerr {
-    align-items: left;
+    align-items: center;
     display: flex;
     justify-content: center;
 
     flex-direction: column;
     margin-top: 20px;
   
+}
+
+ion-item {
+    --border-width: 0;
+    --inner-border-width: 0;
 }
 
 .textboxxes {
