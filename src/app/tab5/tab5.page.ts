@@ -75,7 +75,7 @@ export class Tab5Page implements OnInit {
             fall: false,
             medical: false,
             unwell: false,
-            comments: ""
+            comments: "-"
           })
           window.location.reload();
         })

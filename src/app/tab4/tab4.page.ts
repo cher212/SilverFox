@@ -64,13 +64,13 @@ export class Tab4Page implements OnInit {
               time: time
             });
   
-          if (comments) {
+          if (comments && comments != "-") {
             inChargeDocRef.update({
               comments: comments
             });
           } else {
             inChargeDocRef.update({
-              comments: ""
+              comments: "-"
             });
           }
         })
