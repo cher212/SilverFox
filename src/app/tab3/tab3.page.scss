@@ -71,6 +71,8 @@
     max-height: 50px !important; //any size 
     margin-left: 45px;
     margin-bottom: 50px;
+    position: relative;
+
 }
 
 
@@ -103,3 +105,18 @@
     word-break: break-word;
     /* Center the text horizontally within the container */
 }
+
+.notification-circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+
+  .avatar-container {
+    position: relative;
+  }
