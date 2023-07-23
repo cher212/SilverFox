@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { from } from 'rxjs';
 import { first } from 'rxjs/operators';
-
+import { formatDate } from '@angular/common';
 
 interface InChargeDocument {
   checkedIn: string;
@@ -16,7 +16,7 @@ interface InChargeDocument {
 export class Tab3Page implements OnInit {
   currentUser: any;
   isCheckinYes: boolean = false;
-
+  todayDate: string;
   inChargeCollection: AngularFirestoreCollection<InChargeDocument>;
   inChargeDocuments: InChargeDocument[] = [];
 
@@ -34,6 +34,13 @@ export class Tab3Page implements OnInit {
       this.currentUser = JSON.parse(currentUser);
     }
     this.retrieveInChargeDocuments();
+
+    this.getTodayDate();
+  }
+  
+  getTodayDate() {
+    const today = new Date();
+    this.todayDate = formatDate(today, 'dd MMM yyyy', 'en');
   }
 
   retrieveInChargeDocuments() {

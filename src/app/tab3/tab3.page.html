@@ -2,7 +2,7 @@
   <ion-title class="header">
     Welcome, <br> {{ currentUser.name }}
   </ion-title>
-  <p class="mid">Status Overview </p>
+  <p class="mid">Status Overview for {{ todayDate }} </p>
 
   <div class="flex-center">
     <ion-card class="checkedin">
@@ -12,12 +12,7 @@
     </ion-card>
   </div>
 
-  <!-- <div class="flex-center">
-    <ion-avatar class="item-avatar" *ngFor="let document of inChargeDocuments">
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      <ion-label class="flex-center">elderly</ion-label>
-    </ion-avatar>
-  </div>-->
+
   <div class="profile-pictures">
     <div class="flex-center" class="profile-picture" *ngFor="let document of inChargeDocuments">
       <ion-avatar class="item-avatar" *ngIf="document.checkedIn === true">
