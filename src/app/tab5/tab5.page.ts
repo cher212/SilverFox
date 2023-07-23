@@ -71,11 +71,7 @@ export class Tab5Page implements OnInit {
 
       inChargeDocRef.update({ alerted: false })
         .then(() => {
-          this.firestore
-        .collection('profiles')
-        .doc(currentUserID)
-        .collection('in-charge')
-        .doc(uid).update({ 
+          inChargeDocRef.update({ 
             fall: false,
             medical: false,
             unwell: false,
