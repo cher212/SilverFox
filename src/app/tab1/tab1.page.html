@@ -10,25 +10,23 @@
 
 
    <div class="flex-center">
-    <ion-button class="button" [color]="buttonValue > 0 ? 'success' : 'primary'" (click)="updateCheckInStatus()" (click)="buttonValue = 1">
+    <ion-button *ngIf="isCheckIn !== null" class="button" [color]="isCheckIn ? 'success' : (isClicked ? 'success' : 'primary')"
+      (click)="updateCheckInStatus()">
       <ion-icon slot="start" name="log-in"></ion-icon>
-      Check in
+      {{ isClicked ? 'Checked In' : (isCheckIn ? 'Checked In' : 'Check In') }}
     </ion-button>
-   </div>
+  </div>
 
 
-   <p class="subtitle emergency"> Emergency Button </p>
+  <p class="subtitle emergency"> Emergency Button </p>
   <div class="container" style="margin-right: 30px">
- 
-      <ion-button shape="circle" id="present-alert">
+
+    <ion-button shape="circle" id="present-alert">
       <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
-    </ion-button>  
-    <ion-alert
-    trigger="present-alert"
-    header="Do you want to alert your social worker?"
-    [buttons]="alertButtons"
-    
-    > </ion-alert> <br> <br>
+    </ion-button>
+    <ion-alert trigger="present-alert" header="Do you want to alert your social worker?" [buttons]="alertButtons">
+    </ion-alert> <br> <br>
+
 
 
   </div>

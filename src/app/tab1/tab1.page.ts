@@ -3,9 +3,6 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { interval } from 'rxjs';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 
-interface InChargeDocument {
-  checkedIn: boolean;
-}
 
 @Component({
   selector: 'app-tab1',
@@ -18,12 +15,20 @@ interface InChargeDocument {
 export class Tab1Page implements OnInit {
 
   currentUser: any;
-  inChargeCollection: AngularFirestoreCollection<InChargeDocument>;
-  inChargeDocuments: InChargeDocument[] = [];
+  isCheckIn : boolean | null = null;
+  isClicked = false;
+  
+  
+  constructor(
+    private firestore: AngularFirestore,
+    private nav: NavController,
+  ) {
+  }
 
   ngOnInit() {
     const currentUser = sessionStorage.getItem('currentUser');
     const swID = sessionStorage.getItem('swID');
+    const userID = sessionStorage.getItem('userID');
     if (currentUser) {
       this.currentUser = JSON.parse(currentUser);
     }
@@ -38,15 +43,21 @@ export class Tab1Page implements OnInit {
     interval(timeUntilMidnight).subscribe(() => {
       this.resetButtonValue();
     });
+
+    
+    if (userID) {
+      this.firestore.collection('profiles').doc(userID).get()
+        .subscribe((snapshot) => {
+          const data = snapshot.data();
+          if (data && data['checkedIn'] !== undefined) {
+            this.isCheckIn = data['checkedIn'];
+          }
+        });
+    }
+
   }
 
-  constructor(
-    private firestore: AngularFirestore,
-    private nav: NavController,
-  ) {
-    const parentDocId = 'lHxd5XnwCPTdD2KwEXCvRZuXlxq1';
-    this.inChargeCollection = this.firestore.collection('profiles').doc(parentDocId).collection<InChargeDocument>('in-charge');
-  }
+
 
   handlerMessage = '';
   roleMessage = '';
@@ -127,6 +138,7 @@ export class Tab1Page implements OnInit {
 
 
   updateCheckInStatus() {
+    this.isClicked = true;
 
     const SWuserID = sessionStorage.getItem('swID');
     const currentUserID = sessionStorage.getItem('userID');
