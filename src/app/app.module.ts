@@ -18,6 +18,11 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SwTabsPageModule } from './sw-tabs/sw-tabs.module';
+import { initializeApp } from "firebase/app";
+
+const app = initializeApp(environment.firebaseConfig);
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
