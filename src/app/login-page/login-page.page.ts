@@ -48,6 +48,12 @@ export class LoginPagePage implements OnInit {
       email: new FormControl(),
       password: new FormControl()
     })
+
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (currentUser) {
+      // Route to tabs/tab1 screen
+      this.router.navigate(['tabs', 'tab1']);
+    }
   }
 
   // onLogin() {
