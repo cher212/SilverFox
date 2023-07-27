@@ -38,6 +38,13 @@ export class Tab3Page implements OnInit {
     this.getTodayDate();
   }
   
+  handleRefresh(event) { 
+    setTimeout(() => { 
+      window.location.reload(); 
+      event.target.complete(); 
+    }, 2000); 
+  }
+  
   getTodayDate() {
     const today = new Date();
     this.todayDate = formatDate(today, 'dd MMM yyyy', 'en');

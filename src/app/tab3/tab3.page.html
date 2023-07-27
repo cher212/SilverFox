@@ -4,6 +4,10 @@
   </ion-title>
   <p class="mid">Status Overview for {{ todayDate }} </p>
 
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)"> 
+    <ion-refresher-content></ion-refresher-content> 
+  </ion-refresher>
+  
   <div class="flex-center">
     <ion-card class="checkedin">
       <ion-text class="text">
