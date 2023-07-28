@@ -48,39 +48,7 @@ export class LoginPagePage implements OnInit {
       email: new FormControl(),
       password: new FormControl()
     })
-
-    const currentUser = sessionStorage.getItem('currentUser');
-    if (currentUser) {
-      // Route to tabs/tab1 screen
-      this.router.navigate(['tabs', 'tab1']);
-    }
   }
-
-  // onLogin() {
-  //   const email = this.formData.value.email;
-  //   const password = this.formData.value.password;
-  
-  //   this.authService.login(email, password)
-
-  //     .then(user => {
-  //       if (user) {
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //         console.log(user);
-  //         this.router.navigate(['tabs', 'tab1']);
-  //       } else {
-  //         console.log('Login unsuccessful.');
-  //       }
-  //     })
-  //     .catch(async error => {
-  //       console.log('Login error:', error);
-  //       const toast = await this.toastr.create({
-  //         message: 'Email and/or Password is incorrect',
-  //         duration: 2000,
-  //         color: 'danger'
-  //       });
-  //       toast.present();
-  //     });
-  // }
 
   onLogin() {
     const email = this.formData.value.email;

@@ -1,13 +1,12 @@
-
-
- 
-
 <ion-content [fullscreen]="true">
   <ion-title class="header">
     Welcome, <br> {{ currentUser.name }}
    </ion-title>
    <p class="mid">Ready to start your day? </p>
 
+   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)"> 
+    <ion-refresher-content></ion-refresher-content> 
+  </ion-refresher>
 
    <div class="flex-center">
     <ion-button *ngIf="isCheckIn !== null" class="button" [color]="isCheckIn ? 'success' : (isClicked ? 'success' : 'primary')"

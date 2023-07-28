@@ -57,7 +57,12 @@ export class Tab1Page implements OnInit {
 
   }
 
-
+  handleRefresh(event) { 
+    setTimeout(() => { 
+      window.location.reload(); 
+      event.target.complete(); 
+    }, 2000); 
+  }
 
   handlerMessage = '';
   roleMessage = '';
@@ -84,24 +89,6 @@ export class Tab1Page implements OnInit {
     },
   ];
 
-  /*checkIn() {
-    const userID = sessionStorage.getItem('userID');
-
-    if (userID) {
-      const elderRef = this.firestore.collection('profiles').doc(userID);
-
-      // Update the 'checkedIn' field to true
-      elderRef.update({ checkedIn: true })
-        .then(() => {
-          console.log('Check-in successful');
-        })
-        .catch((error) => {
-          console.error('Error updating checkedIn field:', error);
-        });
-    } else {
-      console.error('User ID is not available in sessionStorage');
-    }
-  }*/
 
   resetButtonValue() {
     const userID = sessionStorage.getItem('userID');
